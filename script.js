@@ -4,13 +4,15 @@ const pad = 		document.querySelector(".pad")
 const slider = 		document.querySelector(".slider")
 const sliderInput = document.querySelector(".inputSlider")
 const clear =		document.querySelector(".clear")
+const colorSelect = document.getElementById("color-select")
 
 const single = 		document.querySelector('.single')
 const rainbow = 	document.querySelector('.rainbow')
 const eraser = 		document.querySelector('.eraser')
 
 let mode = 'single'
-let color = 'black'
+let color = colorSelect.value
+
 
 slider.addEventListener('input', function(e){
 	let value = event.target.value
@@ -19,6 +21,10 @@ slider.addEventListener('input', function(e){
 	pad.textContent = ""
 	createPad()
 
+})
+
+colorSelect.addEventListener('input', function(e){
+	color = colorSelect.value
 })
 
 clear.addEventListener('click', function(e){
