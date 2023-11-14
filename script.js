@@ -28,6 +28,11 @@ function createPad() {
 		for (j = 0; j < num; j++) {
 			let paddie = document.createElement('div')
 			paddie.style.cssText = "margin:0; flex: 1"
+			
+			paddie.addEventListener('mouseover', function(e){
+				paddie.style.cssText += "background-color: black"
+			})
+
 			paddie.classList.add("fill")
 			padette.appendChild(paddie)
 
@@ -38,8 +43,10 @@ function createPad() {
 
 createPad()
 
+/*
 const fill = document.querySelector(".fill")
 fill.addEventListener('click', function(e){
 	console.log("FILL ME")
 	fill.style.cssText += "background-color: black;"
 })
+*/
