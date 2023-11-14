@@ -3,7 +3,14 @@ console.log("SCRIPT IS HERE")
 const pad = 		document.querySelector(".pad")
 const slider = 		document.querySelector(".slider")
 const sliderInput = document.querySelector(".inputSlider")
+const clear =		document.querySelector(".clear")
 
+const single = 		document.querySelector('.single')
+const rainbow = 	document.querySelector('.rainbow')
+const eraser = 		document.querySelector('.eraser')
+
+let mode = 'single'
+let color = 'black'
 
 slider.addEventListener('input', function(e){
 	let value = event.target.value
@@ -13,6 +20,34 @@ slider.addEventListener('input', function(e){
 	createPad()
 
 })
+
+clear.addEventListener('click', function(e){
+	pad.textContent = ""
+	createPad()
+})
+
+
+single.addEventListener('click', function(e){
+	mode = 'single'
+	single.style.cssText = "background-color: black; color: white;"
+	rainbow.style.cssText = "background-color: grey; color: black;"
+	eraser.style.cssText = "background-color: grey; color: black;"
+})
+
+rainbow.addEventListener('click', function(e){
+	mode = 'rainbow'
+	single.style.cssText = "background-color: grey; color: black;"
+	rainbow.style.cssText = "background-color: black; color: white;"
+	eraser.style.cssText = "background-color: grey; color: black;"
+})
+
+eraser.addEventListener('click', function(e){
+	mode = 'eraser'
+	single.style.cssText = "background-color: grey; color: black;"
+	rainbow.style.cssText = "background-color: grey; color: black;"
+	eraser.style.cssText = "background-color: black; color: white;"
+})
+
 
 function createPad() {
 	pad.style.cssText += "display: flex; flex-direction: column;"
@@ -29,9 +64,18 @@ function createPad() {
 			let paddie = document.createElement('div')
 			paddie.style.cssText = "margin:0; flex: 1"
 			
+			
 			paddie.addEventListener('mouseover', function(e){
-				paddie.style.cssText += "background-color: black"
+				if (mode == 'single') {
+					paddie.style.cssText += "background-color: " + color + ";"
+				} else if (mode == 'eraser') {
+					paddie.style.cssText += "background-color: rgb(182, 182, 174, 1.0);"
+				} else if (mode == 'rainbow') {
+					paddie.style.cssText += "background-color: rgb("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+", 1.0);"
+				}
 			})
+			
+			/*paddie.addEventListener('mouseover', hoover())*/
 
 			paddie.classList.add("fill")
 			padette.appendChild(paddie)
