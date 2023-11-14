@@ -41,5 +41,5 @@ createPad()
 const fill = document.querySelector(".fill")
 fill.addEventListener('click', function(e){
 	console.log("FILL ME")
-	fill.style.cssText = "background-color: black;"
+	fill.style.cssText += "background-color: black;"
 })
